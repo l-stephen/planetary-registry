@@ -1,7 +1,15 @@
 import React from "react"
 
 function Planet({planet}) {
+    console.log(planet)
+    // const {name, climate, population, terrain} = planet
     return(
+        // <tr>
+        //     <td>{name}</td>
+        //     <td>{climate}</td>
+        //     <td>{terrain}</td>
+        //     <td>{population}</td>
+        // </tr>
         <tr>
             <td>{planet.name}</td>
             <td>{planet.climate}</td>

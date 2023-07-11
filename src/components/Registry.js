@@ -4,51 +4,41 @@ import NewPlanetForm from "./NewPlanetForm"
 import PlanetList from "./PlanetList"
 
 function Registry() {
-
-    const [planets, setPlanets] = useState([]);
-    const [filterText, setFilterText] = useState("");
-
+    const [planets, setPlanets] = useState([])
+    const [filterText, setFilterText] = useState("")
+    //GET REQUEST
     useEffect(() => {
         fetch("http://localhost:8085/planets")
         .then(response => response.json())
-        .then(planetJson => {
-            setPlanets(planetJson);
-        })
-    }, []);
+        .then(data => setPlanets(data))
+    },[])
 
-    function addNewPlanet(planet) {
-        fetch("http://localhost:8085/planets", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(planet)
-        });
+    console.log(planets)
 
-        setPlanets([...planets, planet])
+    function addNewPlanet(newPlanet){
+        setPlanets([...planets, newPlanet])
     }
 
-    function onFilterText(text) {
-        setFilterText(text);
+    function onFilterText(text){
+        setFilterText(text)
     }
+    console.log(filterText)
 
     const displayPlanets = planets.filter(planet => {
-        const searchLowerCase = filterText.toLowerCase();
-
         return (
-            planet.name.toLowerCase().includes(searchLowerCase)
-            || planet.climate.toLowerCase().includes(searchLowerCase)
-            || planet.terrain.toLowerCase().includes(searchLowerCase)
-            || planet.population.toLowerCase().includes(searchLowerCase)
-        );
-    });
+            planet.name.toLowerCase().includes(filterText.toLowerCase())
+            || planet.climate.toLowerCase().includes(filterText.toLowerCase())
+            || planet.terrain.toLowerCase().includes(filterText.toLowerCase())
+            || planet.population.toLowerCase().includes(filterText.toLowerCase())
+        )
+    })
 
     return(
         <div className="registry">
-            <Search filterText={onFilterText}/>
+            <Search onFilterText = {onFilterText}/>
             <div className="content">
-                <PlanetList planets={displayPlanets} />
-                <NewPlanetForm addNewPlanet={addNewPlanet} />
+                <PlanetList planets = {displayPlanets}/>
+                <NewPlanetForm addNewPlanet = {addNewPlanet} />
             </div>
         </div>
     )

@@ -1,10 +1,18 @@
-import React from "react"
+import React, {useState} from "react"
 
-function Search({filterText}) {
+function Search({onFilterText}) {
 
-    function handleSearch(event) {
-        filterText(event.target.value);
+    // const [search, setSearch] = useState("")
+
+    function handleSearch(event){
+        onFilterText(event.target.value)
     }
+
+    // function searchText(event){
+    //     setSearch(event.target.value)
+    //     onFilterText(search)
+    // }
+
     return (
         <div>
             <input type="text" onChange={handleSearch} placeholder="Search..."/>
