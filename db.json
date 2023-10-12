@@ -1210,6 +1210,20 @@
       "climate": "cold",
       "terrain": "rocky",
       "population": "1"
+    },
+    {
+      "name": "test",
+      "climate": "test",
+      "terrain": "test",
+      "population": "10000",
+      "id": 61
+    },
+    {
+      "name": "ste",
+      "climate": "",
+      "terrain": "",
+      "population": "",
+      "id": 62
     }
   ]
 }
